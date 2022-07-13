@@ -1,6 +1,17 @@
 <template>
   <div>
     {{ msg }}
+
+    <div id="addRecipe">
+      <p>Add a new recipe</p>
+      <input type="text" id="recipe">
+      <input type="submit" value="Add">
+    </div>
+
+    <div id="showRecipes">
+
+    </div>
+
   </div>
 </template>
 
