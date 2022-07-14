@@ -57,7 +57,7 @@ export default {
   methods: {
     addRecipe() {
       if(this.newTitle != '' && this.newIngredients != '' && this.newInstructions != ''){
-        this.recipes.push({ title: this.newTitle, ingredients: this.newIngredients })
+        this.recipes.push({ title: this.newTitle, ingredients: this.newIngredients, instructions: this.newInstructions })
       this.newTitle = ''
       this.newIngredients = ''
       this.newInstructions = ''
