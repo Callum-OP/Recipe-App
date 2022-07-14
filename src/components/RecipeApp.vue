@@ -1,9 +1,9 @@
 <template>
   <div>
-    {{ msg }}
+    <h1> {{ msg }} </h1>
 
     <div id="addRecipe">
-      <p>Add a new recipe</p>
+      <h2>Add a new recipe</h2>
       <form @submit.prevent="addRecipe">
         <input v-model="newTitle" placeholder="Enter title here">
         <br><br>
@@ -16,16 +16,16 @@
     </div>
 
     <div id="showRecipes">
-    <p>View recipes</p>
-    <ul>
-      <li v-for="recipe in recipes" :key="recipe.title">
-        <p>
-          {{ recipe.title }} :
-          {{ recipe.ingredients }} 
-          <button @click="removeRecipe(recipe)">Delete</button>
-        </p>
-      </li>
-    </ul>
+      <h2>View recipes</h2>
+      <ul>
+        <li v-for="recipe in recipes" :key="recipe.title">
+          <div id="recipe">
+            {{ recipe.title }} :
+            {{ recipe.ingredients }} 
+            <button @click="removeRecipe(recipe)">Delete</button>
+          </div>
+        </li>
+      </ul>
     </div>
 
   </div>
@@ -43,15 +43,18 @@ export default {
       newIngredients: '',
       recipes: [
         { title: 'Banana Milkshake', ingredients: '2 bananas and 1 cup of milk' },
-        { title: 'Ham Sandwich', ingredients: '1 slice of bread and 1 slice of ham' }
+        { title: 'Ham Sandwich', ingredients: '1 slice of bread and 1 slice of ham' },
+        { title: 'Grilled Cheese Sandwich', ingredients: '1 slice of bread and 1 slice of cheese' }
       ],
     }
   },
   methods: {
     addRecipe() {
-      this.recipes.push({ title: this.newTitle, ingredients: this.newIngredients })
+      if(this.newTitle != '' && this.newIngredients != ''){
+        this.recipes.push({ title: this.newTitle, ingredients: this.newIngredients })
       this.newTitle = ''
       this.newIngredients = ''
+      }
     },
     removeRecipe(recipe) {
       this.recipes = this.recipes.filter((t) => t !== recipe)
