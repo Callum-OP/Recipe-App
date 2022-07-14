@@ -4,22 +4,25 @@
 
     <div id="addRecipe">
       <p>Add a new recipe</p>
-      <input :value="text" placeholder="Enter title here">
-      <br><br>
-      <input :value="text" placeholder="Enter ingredients here">
-      <br><br>
-      <div>
-        <button> Add </button>
-      </div>
+      <form @submit.prevent="addRecipe">
+        <input v-model="newTitle" placeholder="Enter title here">
+        <br><br>
+        <input v-model="newIngredients" placeholder="Enter ingredients here">
+        <br><br>
+        <div>
+          <button>Add Recipe</button>
+        </div>
+      </form>
     </div>
 
     <div id="showRecipes">
     <p>View recipes</p>
     <ul>
       <li v-for="recipe in recipes" :key="recipe.title">
-        {{ recipe.title }} :
-        {{ recipe.ingredients }}
-        <br><br>
+        <p>
+          {{ recipe.title }} :
+          {{ recipe.ingredients }} 
+        </p>
       </li>
     </ul>
     </div>
@@ -35,6 +38,8 @@ export default {
   },
   data() {
     return {
+      newTitle: '',
+      newIngredients: '',
       recipes: [
         { title: 'Banana Milkshake', ingredients: '2 bananas and 1 cup of milk' },
         { title: 'Ham Sandwich', ingredients: '1 slice of bread and 1 slice of ham' }
@@ -42,9 +47,11 @@ export default {
     }
   },
   methods: {
-    add(){
-      
-    }
+    addRecipe() {
+      this.recipes.push({ title: this.newTitle, ingredients: this.newIngredients })
+      this.newTitle = ''
+      this.newIngredients = ''
+    },
   }
 }
 </script>
