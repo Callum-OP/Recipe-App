@@ -22,6 +22,7 @@
         <p>
           {{ recipe.title }} :
           {{ recipe.ingredients }} 
+          <button @click="removeRecipe(recipe)">Delete</button>
         </p>
       </li>
     </ul>
@@ -52,6 +53,9 @@ export default {
       this.newTitle = ''
       this.newIngredients = ''
     },
+    removeRecipe(recipe) {
+      this.recipes = this.recipes.filter((t) => t !== recipe)
+    }
   }
 }
 </script>
